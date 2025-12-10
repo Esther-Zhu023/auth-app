@@ -1,17 +1,20 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { login } from './actions'
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
     setLoading(true)
     setError(null)
 
+    const formData = new FormData(e.currentTarget)
     const email = formData.get('email') as string
     const password = formData.get('password') as string
 
@@ -22,12 +25,25 @@ export default function LoginPage() {
       return
     }
 
-    // 调用 Server Action
-    const result = await login(formData)
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
 
-    // 如果有返回值，说明发生了错误（成功的话会 redirect，不会返回）
-    if (result?.error) {
-      setError(result.error)
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || '登录失败')
+        setLoading(false)
+        return
+      }
+
+      // 登录成功，跳转到 dashboard
+      router.push('/dashboard')
+    } catch (err) {
+      setError('登录过程中发生错误，请稍后重试')
       setLoading(false)
     }
   }
@@ -56,7 +72,7 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form action={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
                 Email Address
