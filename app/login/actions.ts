@@ -15,7 +15,8 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
-    redirect('/error')
+    // 返回错误信息而不是重定向
+    return { error: error.message }
   }
 
   revalidatePath('/', 'layout')

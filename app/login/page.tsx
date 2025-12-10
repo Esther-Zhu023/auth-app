@@ -17,15 +17,22 @@ export default function LoginPage() {
 
     // 客户端验证
     if (!email || !password) {
-      setError('Please fill in all fields')
+      setError('请填写所有字段')
       setLoading(false)
       return
     }
 
     try {
-      await login(formData)
+      const result = await login(formData)
+
+      // 如果返回了错误信息
+      if (result && result.error) {
+        setError(result.error)
+        setLoading(false)
+      }
+      // 如果成功，会自动跳转，不需要处理
     } catch (err) {
-      setError('Invalid email or password')
+      setError('登录过程中发生错误，请稍后重试')
       setLoading(false)
     }
   }

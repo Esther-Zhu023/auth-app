@@ -20,27 +20,34 @@ export default function RegisterPage() {
 
     // 客户端验证
     if (!email || !password || !confirmPassword) {
-      setError('Please fill in all fields')
+      setError('请填写所有字段')
       setLoading(false)
       return
     }
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match')
+      setError('两次输入的密码不一致')
       setLoading(false)
       return
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError('密码长度至少为 6 个字符')
       setLoading(false)
       return
     }
 
     try {
-      await signup(formData)
+      const result = await signup(formData)
+
+      // 如果返回了错误信息
+      if (result && result.error) {
+        setError(result.error)
+        setLoading(false)
+      }
+      // 如果成功，会自动跳转，不需要处理
     } catch (err) {
-      setError('An error occurred during registration')
+      setError('注册过程中发生错误，请稍后重试')
       setLoading(false)
     }
   }
