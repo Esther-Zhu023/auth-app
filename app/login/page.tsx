@@ -22,17 +22,12 @@ export default function LoginPage() {
       return
     }
 
-    try {
-      const result = await login(formData)
+    // 调用 Server Action
+    const result = await login(formData)
 
-      // 如果返回了错误信息
-      if (result && result.error) {
-        setError(result.error)
-        setLoading(false)
-      }
-      // 如果成功，会自动跳转，不需要处理
-    } catch (err) {
-      setError('登录过程中发生错误，请稍后重试')
+    // 如果有返回值，说明发生了错误（成功的话会 redirect，不会返回）
+    if (result?.error) {
+      setError(result.error)
       setLoading(false)
     }
   }

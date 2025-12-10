@@ -37,17 +37,12 @@ export default function RegisterPage() {
       return
     }
 
-    try {
-      const result = await signup(formData)
+    // 调用 Server Action
+    const result = await signup(formData)
 
-      // 如果返回了错误信息
-      if (result && result.error) {
-        setError(result.error)
-        setLoading(false)
-      }
-      // 如果成功，会自动跳转，不需要处理
-    } catch (err) {
-      setError('注册过程中发生错误，请稍后重试')
+    // 如果有返回值，说明发生了错误（成功的话会 redirect，不会返回）
+    if (result?.error) {
+      setError(result.error)
       setLoading(false)
     }
   }
