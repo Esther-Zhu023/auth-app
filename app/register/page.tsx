@@ -46,14 +46,21 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-6 sm:p-24 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="flex min-h-screen flex-col items-center justify-center p-6 sm:p-24 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 dark:from-gray-900 dark:to-gray-800">
       <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8">
-          <h1 className="text-3xl font-bold mb-2 text-center text-gray-900 dark:text-white">
-            Create Account
+        {/* 绿植装饰 */}
+        <div className="text-center mb-4">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full shadow-lg">
+            <span className="text-4xl">🌿</span>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8 border border-green-100 dark:border-gray-700">
+          <h1 className="text-3xl font-bold mb-2 text-center bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+            加入绿植家族
           </h1>
           <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
-            Sign up to get started
+            开始您的绿色生活之旅
           </p>
 
           {error && (
@@ -73,7 +80,7 @@ export default function RegisterPage() {
                 type="email"
                 required
                 disabled={loading}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 placeholder="email@example.com"
               />
             </div>
@@ -88,7 +95,7 @@ export default function RegisterPage() {
                 type="password"
                 required
                 disabled={loading}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 placeholder="••••••••"
                 minLength={6}
               />
@@ -107,7 +114,7 @@ export default function RegisterPage() {
                 type="password"
                 required
                 disabled={loading}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 placeholder="••••••••"
                 minLength={6}
               />
@@ -135,7 +142,7 @@ export default function RegisterPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Already have an account?{' '}
-              <Link href="/login" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
+              <Link href="/login" className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium">
                 Log in
               </Link>
             </p>
