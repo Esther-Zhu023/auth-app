@@ -2,6 +2,8 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 
+export const runtime = 'edge';
+
 export default async function DashboardPage() {
   const supabase = await createClient()
 
